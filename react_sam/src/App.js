@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import Postform from './components/Postform';
 
 import PostList from './components/PostList';
+import MyInput from './components/UI/input/MyInput';
 import MySelect from './components/UI/select/MySelect';
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     { id: 2, title: 'Javascript angular', body: 'descdiption' },
     { id: 4, title: 'Jav Vue js', body: 'descdiption' },
   ]);
-
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedSort, setSelectedSort] = useState('');
 
   const createPost = (newPost) => {
@@ -21,9 +22,13 @@ function App() {
     setPosts(posts.filter((p) => p.id !== post.id));
   };
 
+  const sortedPosts = [...posts].sort((a, b) =>
+    a[selectedSort].localeCompare(b[selectedSort])
+  );
+
   const sortPost = (sort) => {
     setSelectedSort(sort);
-    setPosts([...posts].sort((a, b) => a[sort].localeCompare(b[sort])));
+    setPosts();
     console.log(sort);
   };
 
@@ -32,6 +37,11 @@ function App() {
       <Postform create={createPost} />
       <hr style={{ margin: '25px 0' }} />
       <div>
+        <MyInput
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="search ..."
+        />
         <MySelect
           value={selectedSort}
           onChange={sortPost}
