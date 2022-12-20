@@ -1,10 +1,19 @@
 import ClassCounter from './components/ClassCounter';
 import Counter from './components/Counter';
+import './styles/App.css';
 
 function App() {
   return (
     <div className="App">
-      <ClassCounter />
+      <div className="post">
+        <div className="post__content">
+          <strong>1. Javascript </strong>
+          <div>Javascript - programming language</div>
+        </div>
+        <div className="post__btns">
+          <button>delete</button>
+        </div>
+      </div>
     </div>
   );
 }
