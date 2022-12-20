@@ -1,19 +1,16 @@
 import ClassCounter from './components/ClassCounter';
 import Counter from './components/Counter';
+import PostItem from './components/PostItem';
 import './styles/App.css';
 
 function App() {
   return (
     <div className="App">
-      <div className="post">
-        <div className="post__content">
-          <strong>1. Javascript </strong>
-          <div>Javascript - programming language</div>
-        </div>
-        <div className="post__btns">
-          <button>delete</button>
-        </div>
-      </div>
+      <PostItem post={{ id: 1, title: 'Javascript', body: 'descdiption' }} />
+      <PostItem post={{ id: 3, title: 'Javascript', body: 'descdiption' }} />
+      <PostItem post={{ id: 4, title: 'Javascript', body: 'descdiption' }} />
+      <PostItem post={{ id: 5, title: 'Javascript', body: 'descdiption' }} />
+      <PostItem post={{ id: 8, title: 'Javascript', body: 'descdiption' }} />
     </div>
   );
 }
