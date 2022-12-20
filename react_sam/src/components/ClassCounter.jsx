@@ -1,7 +1,7 @@
 import React from 'react';
 
 class ClassCounter extends React.Component {
-  constructor(props) {
+  /*   constructor(props) {
     super(props);
     this.state = {
       count: 0,
@@ -26,7 +26,7 @@ class ClassCounter extends React.Component {
         <button onClick={this.decrement}>decrement</button>
       </div>
     );
-  }
+  } */
 }
 
 export default ClassCounter;
