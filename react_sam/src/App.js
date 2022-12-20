@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import PostList from './components/PostList';
+import Mybutton from './components/UI/button/Mybutton';
 import './styles/App.css';
 
 function App() {
@@ -10,17 +11,14 @@ function App() {
     { id: 4, title: 'Jav Vue js', body: 'descdiption' },
   ]);
 
-  const [posts2, setPosts2] = useState([
-    { id: 1, title: 'Python', body: 'descdiption' },
-    { id: 2, title: 'c# angular', body: 'descdiption' },
-
-    { id: 4, title: 'Jav Vue js', body: 'descdiption' },
-  ]);
-
   return (
     <div className="App">
+      <form>
+        <input type="" placeholder="Posts name " />
+        <input type="" placeholder="Post description" />
+        <Mybutton disabled>create post</Mybutton>
+      </form>
       <PostList posts={posts} title="recieved post lists 1" />
-      <PostList posts={posts2} title="recieved post python 2" />
     </div>
   );
 }
