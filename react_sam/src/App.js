@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Postform from './components/Postform';
 
 import PostList from './components/PostList';
@@ -14,6 +14,17 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSort, setSelectedSort] = useState('');
 
+  function getSortedPosts() {
+    if (selectedSort) {
+      return [...posts].sort((a, b) =>
+        a[selectedSort].localeCompare(b[selectedSort])
+      );
+    }
+    return posts;
+  }
+
+  const sortedPosts = getSortedPosts();
+
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
   };
@@ -22,13 +33,9 @@ function App() {
     setPosts(posts.filter((p) => p.id !== post.id));
   };
 
-  const sortedPosts = [...posts].sort((a, b) =>
-    a[selectedSort].localeCompare(b[selectedSort])
-  );
-
-  const sortPost = (sort) => {
+  const sortPosts = (sort) => {
     setSelectedSort(sort);
-    setPosts();
+
     console.log(sort);
   };
 
@@ -44,7 +51,7 @@ function App() {
         />
         <MySelect
           value={selectedSort}
-          onChange={sortPost}
+          onChange={sortPosts}
           defaultValue="sort"
           options={[
             { value: 'title', name: 'By name' },
@@ -55,7 +62,7 @@ function App() {
       {posts.length !== 0 ? (
         <PostList
           remove={removePost}
-          posts={posts}
+          posts={sortedPosts}
           title="recieved post lists 1"
         />
       ) : (
