@@ -3,7 +3,9 @@ import PostFilter from './components/PostFilter';
 import Postform from './components/Postform';
 
 import PostList from './components/PostList';
+import Mybutton from './components/UI/button/Mybutton';
 import MyInput from './components/UI/input/MyInput';
+import MyModal from './components/UI/myModal/MyModal';
 import MySelect from './components/UI/select/MySelect';
 
 function App() {
@@ -14,6 +16,7 @@ function App() {
   ]);
 
   const [filter, setFilter] = useState({ sort: '', query: '' });
+  const [modal, setModal] = useState(false);
 
   /*  const [searchQuery, setSearchQuery] = useState('');
   const [selectedSort, setSelectedSort] = useState(''); */
@@ -60,6 +63,7 @@ function App() {
 
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
+    setModal(false);
   };
 
   const removePost = (post) => {
@@ -74,18 +78,21 @@ function App() {
 
   return (
     <div className="App">
-      <Postform create={createPost} />
+      <Mybutton style={{ marginTop: 30 }} onClick={() => setModal(true)}>
+        create post
+      </Mybutton>
+      <MyModal visible={modal} setVisible={setModal}>
+        <Postform create={createPost} />
+      </MyModal>
+
       <hr style={{ margin: '25px 0' }} />
       <PostFilter filter={filter} setFilter={setFilter} />
-      {sortedAndSearchedPosts.length !== 0 ? (
-        <PostList
-          remove={removePost}
-          posts={sortedAndSearchedPosts}
-          title="recieved post lists 1"
-        />
-      ) : (
-        <h1 style={{ textAlign: 'center' }}>There is no post</h1>
-      )}
+
+      <PostList
+        remove={removePost}
+        posts={sortedAndSearchedPosts}
+        title="recieved post lists 1"
+      />
     </div>
   );
 }
